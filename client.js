@@ -1,5 +1,5 @@
 //Setup & Connection
-const ws = new WebSocket("ws://localhost:5085");
+const ws = new WebSocket("wss://enjin--enjin--qpbmsj2bcc7n.code.run");
 let joinedRoomCode = null;
 const clientId = getClientId();
 
