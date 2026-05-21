@@ -1,36 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Room</title>
+    <link rel="stylesheet" href="Design.css">
+</head>
 <body>
+    <div class="JoinRoom">
+        <h2>Room Player Client</h2>
 
-<h2>Room Player Client</h2>
+        <div class="join-form">
+            <label>
+                Player name:
+                <input id="playerName" maxlength="24" placeholder="Your name">
+            </label>
 
-<label>
-  Player name:
-  <input id="playerName" maxlength="24" placeholder="Your name">
-</label>
+            <label>
+                Room code:
+                <input id="roomCode" value="ABCD" maxlength="10">
+            </label>
 
-<br><br>
+            <button class="join-btn" onclick="joinRoom()">Join Room</button>
 
-<label>
-  Room code:
-  <input id="roomCode" value="ABCD" maxlength="10">
-</label>
+            <p id="status">Not joined</p>
+        </div>
+    </div>
 
-<button onclick="joinRoom()">Join Room</button>
-
-<p id="status">Not joined</p>
-
-<hr>
-
-<input type="range" min="0" max="4" value="2" step="1" id="slider">
-<p id="sliderValue">Neutral</p>
-
-<button onclick="submitSlider()">Send Slider</button>
-<button onclick="sendButton()">Send Button</button>
-
-<div id="log"></div>
-
-<script src="client.js"></script>
-
+    <script src="client.js"></script>
 </body>
 </html>
