@@ -1,14 +1,14 @@
 //Setup & Connection
-const ws = new WebSocket("wss://enjin--enjin--qpbmsj2bcc7n.code.run");
-let joinedRoomCode = null;
-const clientId = getClientId();
+const ws = new WebSocket("wss://enjin--enjin--qpbmsj2bcc7n.code.run");// Create a new WebSocket connection to the server at ws://localhost:5085
+let joinedRoomCode = null; // Variable to store the room code of the room that the client has joined, initialized to null
+const clientId = getClientId();// Get the client's unique ID using the getClientId helper function and store it in the clientId variable
 
 ws.onopen = () => {
-  setStatus("Connected. Enter room code and click Join Room.");
+  setStatus("Connected. Enter room code and click Join Room."); // When the WebSocket connection is opened, set the status text to prompt the user to enter a room code and join a room
 };
 
 ws.onclose = () => {
-  setStatus("Disconnected from server");
+  setStatus("Disconnected from server"); // When the WebSocket connection is closed, set the status text to indicate that the client has been disconnected from the server
   joinedRoomCode = null;
 };
 
@@ -19,20 +19,25 @@ ws.onmessage = (event) => {
   switch(msg.type)
   {
     case "join_room_success":
-      joinedRoomCode = data.room;
+        joinedRoomCode = data.room;
+        setStatus("Joined room: " + joinedRoomCode);
+        log("Joined as " + data.playerName);
 
-      setStatus("Joined room: " + joinedRoomCode);
-      log("Joined as " + data.playerName);
 
-      break;
+        localStorage.setItem("roomCode", data.room);
+        localStorage.setItem("playerName", data.playerName);
+        localStorage.setItem("clientId", data.clientId);
+        localStorage.setItem("playerState", data.playerState);
 
+        window.location.href = "WaitingScreen.html";
+        
+        break;
     case "join_room_failed":
       joinedRoomCode = null;
-      log("Join failed: " + data.reason);
+      log("Join failed"); // reason?
       break;
-
     case "error":
-      log("Server error: " + data.reason);
+      log("Server error");
       break;
   }
 };
@@ -65,9 +70,9 @@ function getClientId() {
 }
 
 function log(text) {
-  document.getElementById("log").innerHTML += "<p>" + text + "</p>";
+  document.getElementById("log").innerHTML += "<p>" + text + "</p>"; // Append a new paragraph containing the provided text to the inner HTML of the element with the ID "log"
 }
 
 function setStatus(text) {
-  document.getElementById("status").innerText = text;
+  document.getElementById("status").innerText = text; // Set the inner text of the element with the ID "status" to the provided text
 }
