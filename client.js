@@ -30,7 +30,7 @@ ws.onmessage = (event) => {
         localStorage.setItem("playerState", data.playerState);
         localStorage.setItem("character", JSON.stringify(data.character));
 
-        window.location.href = "WaitingScreen.html";
+        window.location.href = "ConnectedScreen.html";
         
         break;
     case "join_room_failed":
