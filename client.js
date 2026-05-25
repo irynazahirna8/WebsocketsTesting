@@ -28,8 +28,9 @@ ws.onmessage = (event) => {
         localStorage.setItem("playerName", data.playerName);
         localStorage.setItem("clientId", data.clientId);
         localStorage.setItem("playerState", data.playerState);
+        localStorage.setItem("character", JSON.stringify(data.character));
 
-        window.location.href = "ConnectedScreen.html";
+        window.location.href = "WaitingScreen.html";
         
         break;
     case "join_room_failed":
@@ -39,6 +40,7 @@ ws.onmessage = (event) => {
     case "error":
       log("Server error");
       break;
+
   }
 };
 
