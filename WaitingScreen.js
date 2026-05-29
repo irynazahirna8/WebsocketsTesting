@@ -1,7 +1,7 @@
 const ws = new WebSocket("wss://enjin--enjin--qpbmsj2bcc7n.code.run/");
 
-const roomCode = localStorage.getItem("roomCode");
-const clientId = localStorage.getItem("clientId");
+const roomCode = sessionStorage.getItem("roomCode");
+const clientId = sessionStorage.getItem("clientId");
 
 ws.onopen = () => {
   console.log("Connected from WaitingScreen");
@@ -27,13 +27,13 @@ ws.onmessage = (event) => {
     case "reconnect_success":
       console.log("Reconnected on WaitingScreen");
 
-      localStorage.setItem("roomCode", data.room);
-      localStorage.setItem("playerName", data.playerName);
-      localStorage.setItem("clientId", data.clientId);
-      localStorage.setItem("playerState", data.playerState);
+      sessionStorage.setItem("roomCode", data.room);
+      sessionStorage.setItem("playerName", data.playerName);
+      sessionStorage.setItem("clientId", data.clientId);
+      sessionStorage.setItem("playerState", data.playerState);
 
       if (data.character) {
-        localStorage.setItem("character", JSON.stringify(data.character));
+        sessionStorage.setItem("character", JSON.stringify(data.character));
       }
       renderCharacter();
 
@@ -55,7 +55,7 @@ ws.onclose = () => {
 };
 
 function renderCharacter() {
-  const savedCharacter = localStorage.getItem("character");
+  const savedCharacter = sessionStorage.getItem("character");
 
   if (!savedCharacter) {
     console.log("No character found in localStorage");
