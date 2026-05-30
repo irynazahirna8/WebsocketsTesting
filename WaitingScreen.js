@@ -47,6 +47,15 @@ ws.onmessage = (event) => {
     case "error":
       console.log("Server error");
       break;
+
+    case "show_scenario":
+      sessionStorage.setItem("roomCode", data.room);
+      sessionStorage.setItem("playerName", data.playerName);
+      sessionStorage.setItem("clientId", data.clientId);
+      sessionStorage.setItem("playerState", data.playerState);
+      
+      window.location.href = "SituationScreen.html";
+      break;
   }
 };
 
