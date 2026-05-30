@@ -67,6 +67,11 @@ function renderCharacter() {
   const profileImage = document.getElementById("profileImage");
   const characterCircle = document.getElementById("characterCircle");
   const fullImage = document.getElementById("fullImage");
+  const background = document.getElementById("Background");
+
+   if (background) {
+    background.style.backgroundColor = character.backgroundColor;
+   }
 
   if (profileImage) {
     profileImage.src = character.faceImage;
