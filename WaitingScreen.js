@@ -58,7 +58,7 @@ function renderCharacter() {
   const savedCharacter = sessionStorage.getItem("character");
 
   if (!savedCharacter) {
-    console.log("No character found in localStorage");
+    console.log("No character found in sessionStorage");
     return;
   }
 
@@ -68,6 +68,10 @@ function renderCharacter() {
   const characterCircle = document.getElementById("characterCircle");
   const fullImage = document.getElementById("fullImage");
   const background = document.getElementById("Background");
+
+  const box1Text = document.getElementById("box1Text");
+  const box2Text = document.getElementById("box2Text");
+  const modalDescription = document.getElementById("modalDescription");
 
    if (background) {
     background.style.backgroundColor = character.backgroundColor;
@@ -83,6 +87,18 @@ function renderCharacter() {
 
   if (fullImage) {
     fullImage.src = character.fullImage;  
+  }
+  if (box1Text) {
+    box1Text.textContent = character.box1Text;
+  }
+
+  if (box2Text) {
+    box2Text.textContent = character.box2Text;
+    box2Text.style.backgroundColor = character.backgroundColor;
+  }
+
+  if (modalDescription) {
+    modalDescription.textContent = character.modalDescription;
   }
 }
 
